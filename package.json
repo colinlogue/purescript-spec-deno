@@ -1,4 +1,5 @@
 {
+  "name": "purescript-spec-deno",
   "type": "module",
   "dependencies": {
     "purescript": "^0.15.15",
