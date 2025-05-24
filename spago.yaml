@@ -3,6 +3,9 @@ workspace:
     registry: 60.0.0
   extraPackages:
     parallel: 6.0.0
+    deno-core:
+      git: https://github.com/colinlogue/purescript-deno-core.git
+      ref: a18db7c9f212e89c9613b23f929a68207831e885
 
 package:
   name: spec-node
@@ -13,6 +16,7 @@ package:
       githubOwner: purescript-spec
       githubRepo: purescript-spec-node
   dependencies:
+    - deno-core
     - aff: ">=7.1.0 <8.0.0"
     - argonaut-codecs: ">=9.1.0 <10.0.0"
     - argonaut-core: ">=7.0.0 <8.0.0"
