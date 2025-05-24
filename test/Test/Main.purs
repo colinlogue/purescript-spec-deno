@@ -18,7 +18,7 @@ import Node.Process (platform)
 import Test.Spec as Spec
 import Test.Spec.Assertions (fail)
 import Test.Spec.Reporter (consoleReporter)
-import Test.Spec.Runner.Node (runSpecAndExitProcess)
+import Test.Spec.Runner.Deno (runSpecAndExitProcess)
 
 main :: Effect Unit
 main = runSpecAndExitProcess [consoleReporter] do

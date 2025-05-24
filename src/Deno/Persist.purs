@@ -1,4 +1,4 @@
-module Test.Spec.Runner.Node.Persist where
+module Test.Spec.Runner.Deno.Persist where
 
 import Prelude
 
@@ -16,11 +16,10 @@ import Data.Newtype (class Newtype, unwrap, wrap)
 import Data.Number as Number
 import Data.String (joinWith)
 import Data.Tuple.Nested ((/\))
+import Deno as Deno
 import Effect.Aff (Aff, Milliseconds(..), catchError)
 import Effect.Class (liftEffect)
 import Effect.Now (now)
-import Node.Encoding (Encoding(..))
-import Node.FS.Aff as FS
 import Test.Spec.Result as Spec
 import Test.Spec.Tree (Tree(..), annotateWithPaths, parentSuiteName)
 
@@ -49,7 +48,7 @@ persistResults trees = do
 
   lastRun <- lastPersistedResults
 
-  FS.writeTextFile UTF8 persistFileName $
+  Deno.writeTextFile mempty persistFileName $
     stringifyWithIndent 2 $ encodeJson $ Map.union currentRun lastRun
   where
     serializeRun :: _ -> _ -> TestRunResults
@@ -71,7 +70,7 @@ lastPersistedResults :: Aff TestRunResults
 lastPersistedResults = readFile `catchError` \_ -> pure Map.empty
   where
     readFile =
-      FS.readTextFile UTF8 persistFileName <#> \text ->
+      Deno.readTextFile persistFileName <#> \text ->
         text # jsonParser # hush >>= (decodeJson >>> hush) # fromMaybe Map.empty
 
 persistFileName = ".spec-results" :: String

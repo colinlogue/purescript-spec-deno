@@ -1,4 +1,4 @@
-module Test.Spec.Runner.Node.Config
+module Test.Spec.Runner.Deno.Config
   ( OptionParser
   , TestRunConfig
   , TestRunConfig'
@@ -36,7 +36,7 @@ import Partial (crashWith)
 import Partial.Unsafe (unsafePartial)
 import Test.Spec.Runner (TreeFilter(..))
 import Test.Spec.Runner as Spec
-import Test.Spec.Runner.Node.Persist (lastPersistedResults)
+import Test.Spec.Runner.Deno.Persist (lastPersistedResults)
 import Test.Spec.Tree (annotateWithPaths, filterTrees, mapTreeAnnotations, parentSuiteName)
 
 type TestRunConfigRow r =

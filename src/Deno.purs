@@ -1,4 +1,4 @@
-module Test.Spec.Runner.Node where
+module Test.Spec.Runner.Deno where
 
 import Prelude
 
@@ -7,13 +7,13 @@ import Data.Newtype (un)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)
 import Effect.Class (liftEffect)
-import Node.Process (exit')
+import Deno (exit)
 import Test.Spec (SpecT, Spec)
 import Test.Spec.Result (Result)
 import Test.Spec.Runner (Reporter)
 import Test.Spec.Runner as Spec
-import Test.Spec.Runner.Node.Config as Cfg
-import Test.Spec.Runner.Node.Persist as Persist
+import Test.Spec.Runner.Deno.Config as Cfg
+import Test.Spec.Runner.Deno.Persist as Persist
 import Test.Spec.Summary (successful)
 import Test.Spec.Tree (Tree)
 
@@ -60,7 +60,7 @@ runSpecAndExitProcess' args reporters spec = launchAff_ do
     else
       pure args.defaultConfig
   res <- runSpecAndGetResults config reporters spec
-  liftEffect $ exit' $ if successful res then 0 else 1
+  liftEffect $ exit $ if successful res then 0 else 1
 
 -- | The core logic of a persistent test run:
 -- |
