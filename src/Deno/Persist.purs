@@ -16,11 +16,11 @@ import Data.Newtype (class Newtype, unwrap, wrap)
 import Data.Number as Number
 import Data.String (joinWith)
 import Data.Tuple.Nested ((/\))
-import Deno as Deno
 import Effect.Aff (Aff, Milliseconds(..), catchError)
 import Effect.Class (liftEffect)
 import Effect.Now (now)
 import Test.Spec.Result as Spec
+import Test.Spec.Runner.Deno.Util as Deno
 import Test.Spec.Tree (Tree(..), annotateWithPaths, parentSuiteName)
 
 type TestFullName = String
@@ -48,7 +48,7 @@ persistResults trees = do
 
   lastRun <- lastPersistedResults
 
-  Deno.writeTextFile mempty persistFileName $
+  Deno.writeTextFile persistFileName $
     stringifyWithIndent 2 $ encodeJson $ Map.union currentRun lastRun
   where
     serializeRun :: _ -> _ -> TestRunResults

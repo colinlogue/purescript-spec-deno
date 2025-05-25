@@ -9,7 +9,6 @@ workspace:
         - arrays: ">=7.3.0 <8.0.0"
         - control: ">=6.0.0 <7.0.0"
         - datetime: ">=6.1.0 <7.0.0"
-        - deno-core
         - effect: ">=4.0.0 <5.0.0"
         - either: ">=6.1.0 <7.0.0"
         - foldable-traversable: ">=6.0.0 <7.0.0"
@@ -50,7 +49,6 @@ workspace:
         - control
         - datetime
         - debug
-        - deno-core
         - distributive
         - effect
         - either
@@ -116,7 +114,6 @@ workspace:
         - unicode
         - unsafe-coerce
         - unsafe-reference
-        - web-url
   package_set:
     address:
       registry: 60.0.0
@@ -625,9 +622,6 @@ workspace:
       z3: 0.0.2
       zipperarray: 2.0.0
   extra_packages:
-    deno-core:
-      git: https://github.com/colinlogue/purescript-deno-core.git
-      ref: a18db7c9f212e89c9613b23f929a68207831e885
     parallel: 6.0.0
 packages:
   aff:
@@ -808,18 +802,6 @@ packages:
     dependencies:
       - functions
       - prelude
-  deno-core:
-    type: git
-    url: https://github.com/colinlogue/purescript-deno-core.git
-    rev: a18db7c9f212e89c9613b23f929a68207831e885
-    dependencies:
-      - aff
-      - console
-      - effect
-      - either
-      - nullable
-      - prelude
-      - web-url
   distributive:
     type: registry
     version: 6.0.0
@@ -1613,15 +1595,3 @@ packages:
     integrity: sha256-zU7BhfJU14nXQRZG9iADsp0mSiKhz07OcKyjRB2YT+Y=
     dependencies:
       - prelude
-  web-url:
-    type: registry
-    version: 2.0.0
-    integrity: sha256-isicTqg0+JZmIK+eD3kwQroOocufYDGZVNIx/wFw488=
-    dependencies:
-      - aff
-      - effect
-      - maybe
-      - partial
-      - prelude
-      - spec
-      - tuples
